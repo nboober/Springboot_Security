@@ -19,8 +19,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        //Restricts access to routes
         http
                 .authorizeRequests()
+                .antMatchers("/")
+                .access("hasAnyAuthority('USER', 'ADMIN')")
+                .antMatchers("/admin").access("hasAuthority('ADMIN')")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").permitAll();
@@ -29,8 +33,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth)
         throws Exception{
-            auth.inMemoryAuthentication().withUser("user")
-                    .password(passwordEncoder().encode("password"))
+            auth.inMemoryAuthentication()
+                    .withUser("dave")
+                    .password(passwordEncoder()
+                            .encode("begreat"))
+                    .authorities("ADMIN")
+                    .and()
+                    .withUser("user")
+                    .password(passwordEncoder()
+                            .encode("password"))
                     .authorities("USER");
     }
 
