@@ -21,4 +21,9 @@ public class HomeController {
         return "admin";
     }
 
+    @RequestMapping("/secure")
+    public String secure(){
+        return "secure";
+    }
+
 }
