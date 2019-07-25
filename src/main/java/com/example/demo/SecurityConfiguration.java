@@ -37,7 +37,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         //Restricts access to routes
         http
                 .authorizeRequests()
-                .antMatchers("/", "/h2-console**").permitAll()
+                .antMatchers("/", "/h2-console**", "/register").permitAll()
                 .antMatchers("/admin").access("hasAuthority('ADMIN')")
                 .anyRequest().authenticated()
                 .and()
