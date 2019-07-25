@@ -34,6 +34,7 @@ public class HomeController {
         else{
             userService.saveUser(user);
             model.addAttribute("message", "User Account Created");
+            model.addAttribute("name", user.getFirstName());
         }
         return "index";
 
