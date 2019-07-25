@@ -7,9 +7,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 public class HomeController {
+
+    @Autowired
+    UserRepository userRepository;
 
     @Autowired
     private UserService userService;
@@ -51,7 +55,9 @@ public class HomeController {
     }
 
     @RequestMapping("/secure")
-    public String secure(){
+    public String secure(Principal principal, Model model){
+        String username = principal.getName();
+        model.addAttribute("user", userRepository.findByUsername(username));
         return "secure";
     }
 
