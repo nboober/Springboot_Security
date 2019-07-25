@@ -18,13 +18,13 @@ public class HomeController {
     @Autowired
     private UserService userService;
 
-    @GetMapping(value = "/register", method = RequestMethod.GET)
+    @GetMapping(value = "/register")
     public String showRegistration(Model model){
         model.addAttribute("user", new User());
         return "registration";
     }
 
-    @PostMapping(value = "/register", method=RequestMethod.GET)
+    @PostMapping(value = "/register")
     public String processRegistration(@Valid
                                           @ModelAttribute("user") User user, BindingResult result, Model model){
         model.addAttribute("user", user);
@@ -36,6 +36,7 @@ public class HomeController {
             model.addAttribute("message", "User Account Created");
         }
         return "index";
+
     }
 
 
