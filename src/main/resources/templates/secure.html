@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -9,5 +9,10 @@
     <h3>Secure Page</h3>
     <a href="/logout">Logout</a>
 
+    <h4>Email</h4>
+    <p th:text="${user.email}"></p>
+
+    <h4>Last Name</h4>
+    <p th:text="${user.lastName}"></p>
 </body>
 </html>
